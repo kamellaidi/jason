@@ -8,7 +8,7 @@ Le front est géré en React. Axios a été utilisé pour le submit sur le form 
 
 Disposition des listes avec la méthode grow en CSS.
 
-Le back avec NodeJS, la BDD avec PostgreSQL, le framework Express et l'ORM Sequelize sont utilisés.
+Le back avec NodeJS, la BDD avec PostgreSQL, le framework Express pour les routes et l'ORM Sequelize sont utilisés pour la relation entre les tables.
 
 Pour lancer le front : ``npm run start``
 
