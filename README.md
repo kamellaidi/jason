@@ -1,7 +1,5 @@
 # Wild Code School Project
 
-!! Suite à des bugs pour push, merci de prendre "front-end" comme base pour lancer le front
-
 Voici le projet Fullstack demandé par WCS.
 
 Le front est géré en React. Axios a été utilisé pour le submit sur le form suite à plusieurs bugs avec fetch. 
