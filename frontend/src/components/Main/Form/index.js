@@ -18,7 +18,7 @@ const Form = ({ handleSubmit, message, setName }) => {
         />
 
         <button type='submit'>Envoyer</button>
-        <div className='message'>{message ? <p>{message}</p> : null}</div>
+        {message ? <p className='message'>{message}</p> : null}
       </form>
     </>
   );

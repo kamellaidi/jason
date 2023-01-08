@@ -10,15 +10,16 @@ const Main = () => {
   const [name, setName] = useState();
   const [message, setMessage] = useState();
   const [posted, setPosted] = useState(false);
+  const [deleted, setDeleted] = useState(false);
+
 
   useEffect(() => {
     const dataFetch = async () => {
       const response = await api.get('/list');
       setData(response.data);
-      setPosted(false);
     };
     dataFetch();
-  }, [posted]);
+  }, [posted, deleted]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,9 +29,13 @@ const Main = () => {
         name,
       });
       if (res.status === 200) {
-        setName('');
         setMessage('Bienvenue à bord !');
         setPosted(true);
+        setTimeout(() => {
+          setPosted(false);
+          setMessage('');
+          setName('');
+        }, 3000);
       }
     } catch (err) {
       console.log(err);
@@ -38,10 +43,30 @@ const Main = () => {
     }
   };
 
+  const handleDelete = async (id) => {
+    try {
+      const response = await api.delete(`/list/${id}`, {
+        params: {
+          id,
+        },
+      });
+      console.log(response.data);
+      setMessage(response.data);
+      setDeleted(true);
+      setTimeout(() => {
+        setDeleted(false);
+        setMessage('');
+      }, 1500);
+    } catch (error) {
+      console.log(error);
+      setMessage(error.message);
+    }
+  };
+
   return (
     <main>
       <Form handleSubmit={handleSubmit} message={message} setName={setName} />
-      <Lists lists={data} />
+      <Lists lists={data} handleDelete={handleDelete} />
     </main>
   );
 };

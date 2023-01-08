@@ -1,6 +1,6 @@
 import './styles.css';
 
-const Lists = ({lists}) => {
+const Lists = ({ lists, handleDelete }) => {
 
   return (
     <>
@@ -9,7 +9,11 @@ const Lists = ({lists}) => {
         {console.log(lists)}
         {lists &&
           lists.map((list) => {
-            return <div class='member-item'>{list.name}</div>;
+            return (
+              <div class='member-item' onClick={() => handleDelete(list.id)} key={list.id} >
+                {list.name}
+              </div>
+            );
           })}
       </section>
     </>

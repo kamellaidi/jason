@@ -34,6 +34,26 @@ const listController = {
       });
     }
   },
+  delete: async function (req, res) {
+    try {
+      const id = req.params.id;
+      const list = await List.findByPk(id);
+      // si on trouve la liste on la supprime
+      if (list) {
+        await list.destroy();
+        res.json('Argonaute supprimée');
+      }
+      // sinon on envoie une réponse explicite pour dire qu'on a rien trouvé
+      else {
+        res.status(404).json(`Aucun argonaute à l'id ${id}`);
+      }
+    } catch (error) {
+      console.trace(error);
+      res.status(500).json({
+        message: 'Erreur'
+      });
+    }
+  },
 };
 
 module.exports = listController;
